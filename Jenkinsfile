@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/Deepal05/flask-jenkins-cicd.git'
+                git branch: 'main', credentialsId: 'github-token', url: 'https://github.com/Deepal05/flask-jenkins-cicd.git'
             }
         }
 
