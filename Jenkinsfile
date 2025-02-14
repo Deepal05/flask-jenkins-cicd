@@ -21,19 +21,19 @@ pipeline {
             }
         }
 
-        stage('Run Docker Container') {
-            steps {
-                script {
-                    bat "docker run -d -p 5000:5000 --name $CONTAINER_NAME $IMAGE_NAME"
-                }
-            }
-        }
-
         stage('Cleanup Old Containers') {
             steps {
                 script {
                     bat "docker stop $CONTAINER_NAME || true"
                     bat "docker rm $CONTAINER_NAME || true"
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    bat "docker run -d -p 5000:5000 --name $CONTAINER_NAME $IMAGE_NAME"
                 }
             }
         }
